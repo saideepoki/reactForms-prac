@@ -15,36 +15,37 @@
 import {useState} from 'react';
 
 function Form () {
-    const [email, setEmail] = useState('');
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const handleEmail = (event) => {
-           setEmail(event.target.value);
+    const [formData, setFormData] = useState({
+        email: '',
+        username: '',
+        password: ''
+    });
+    const handleFormData = (event) => {
+        const {name, value} = event.target;
+        setFormData({
+            ...formData,
+            [name]:value
+        })
     }
-    const handleUsername = (event) => {
-        setUsername(event.target.value);
-     }
-   const handlePassword = (event) => {
-       setPassword(event.target.value);
-     }
-    
-     const handleSubmit = (event) => {
-        event.preventDefault();
-     }
+
+    const handleSubmit = (event) => {
+         event.preventDefault();
+         console.log(formData);
+    }
     return (
         <div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit = {handleSubmit}>
             <label>
                 Email:
-                <input type = 'text' value = {email} onChange = {handleEmail}/>
+                <input type = 'text' name = 'email' value = {formData.email} onChange = {handleFormData}/>
             </label>
             <label>
                 username:
-                <input type = 'text' value = {username} onChange = {handleUsername}/>
+                <input type = 'text' name = 'username' value = {formData.username} onChange = {handleFormData}/>
             </label>
             <label>
                 password:
-                <input type = 'password' value = {password} onChange = {handlePassword}/>
+                <input type = 'password' name = 'password' value = {formData.password} onChange = {handleFormData}/>
             </label>
             <button type = 'submit'>Submit</button>
           </form>
