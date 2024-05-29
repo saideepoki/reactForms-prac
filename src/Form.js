@@ -16,17 +16,37 @@ import {useState} from 'react';
 
 function Form () {
     const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
     const handleEmail = (event) => {
-           console.log(event.target.value);
-           setEmail(event.target.value); 
+           setEmail(event.target.value);
     }
+    const handleUsername = (event) => {
+        setUsername(event.target.value);
+     }
+   const handlePassword = (event) => {
+       setPassword(event.target.value);
+     }
+    
+     const handleSubmit = (event) => {
+        event.preventDefault();
+     }
     return (
         <div>
-          <form>
+          <form onSubmit={handleSubmit}>
             <label>
                 Email:
                 <input type = 'text' value = {email} onChange = {handleEmail}/>
             </label>
+            <label>
+                username:
+                <input type = 'text' value = {username} onChange = {handleUsername}/>
+            </label>
+            <label>
+                password:
+                <input type = 'password' value = {password} onChange = {handlePassword}/>
+            </label>
+            <button type = 'submit'>Submit</button>
           </form>
         </div>
     )
